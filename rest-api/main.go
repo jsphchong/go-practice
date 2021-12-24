@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-var pm PostMap
+var pm = PostMap{}
 
 func main() {
 	myRouter := prepareRouter()

@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"sort"
 	"strconv"
+	"time"
 
 	"github.com/gorilla/mux"
 )
@@ -31,6 +32,8 @@ func CreatePost(w http.ResponseWriter, r *http.Request) {
 		return
 	} else {
 		p.Id = id
+		p.Time = time.Now()
+		p.FormattedTime = p.Time.Format(TimeFormat)
 		pm[id] = &p
 	}
 
@@ -62,11 +65,14 @@ func UpdatePost(w http.ResponseWriter, r *http.Request){
 	var p Post
 	json.Unmarshal(body, &p)
 
-	if p.Title == ""{
+	if p.Title == "" {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	} else {
 		p.Id = id
+		p.Id = id
+		p.Time = time.Now()
+		p.FormattedTime = p.Time.Format(TimeFormat)
 		pm[id] = &p
 		json.NewEncoder(w).Encode(p) 
 	}

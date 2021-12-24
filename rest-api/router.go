@@ -10,6 +10,7 @@ func prepareRouter() http.Handler {
 	router := mux.NewRouter().StrictSlash(true)
 
 	// Routes 
+	router.Path("/").HandlerFunc(RESTHandler)
 	router.Path("/posts").HandlerFunc(RESTHandler).Methods(http.MethodPost)
 	router.Path("/posts/{id}").HandlerFunc(RESTHandler).Methods(http.MethodGet)
 	router.Path("/posts/{id}").HandlerFunc(RESTHandler).Methods(http.MethodPut)

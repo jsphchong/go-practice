@@ -17,7 +17,7 @@ func RESTHandler(w http.ResponseWriter, req *http.Request) {
 	case http.MethodDelete:
 		DeletePost(w, req)
 	default:
-		http.Error(w, "Method not supported", http.StatusMethodNotAllowed)
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 	}
 	w.WriteHeader(http.StatusOK)
 }
